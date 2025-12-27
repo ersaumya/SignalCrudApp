@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
+import { Contact } from './models/contact';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,4 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {
-  protected readonly title = signal('SignalCrudApp21');
-}
+export class App {}
