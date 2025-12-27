@@ -5,10 +5,11 @@ import { ApiService } from '../../services/api-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contact-lists',
-  imports: [MatListModule, MatProgressSpinnerModule, MatIconModule, MatButtonModule],
+  imports: [MatListModule, MatProgressSpinnerModule, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './contact-lists.html',
   styleUrl: './contact-lists.css',
 })
