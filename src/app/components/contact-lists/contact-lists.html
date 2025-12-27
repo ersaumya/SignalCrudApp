@@ -3,8 +3,13 @@
   <mat-list-item>
     <h3 matListItemTitle>Name:{{ contact.name }}</h3>
     <p matListItemLine>Email:{{ contact.email }}</p>
+    <div matListItemMeta>
+      <button mat-icon-button (click)="deleteContact(contact.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </mat-list-item>
-  } @if(contactReasourse.isLoading()){
+  } @if(loading()){
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   }
 </mat-list>

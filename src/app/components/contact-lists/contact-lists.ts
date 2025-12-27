@@ -1,20 +1,31 @@
-import { Component, inject, resource, signal } from '@angular/core';
-import { Contact } from '../../models/contact';
+import { Component, computed, inject, resource, signal } from '@angular/core';
+
 import { MatListModule } from '@angular/material/list';
 import { ApiService } from '../../services/api-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-contact-lists',
-  imports: [MatListModule, MatProgressSpinnerModule],
+  imports: [MatListModule, MatProgressSpinnerModule, MatIconModule, MatButtonModule],
   templateUrl: './contact-lists.html',
   styleUrl: './contact-lists.css',
 })
 export class ContactLists {
   apiService = inject(ApiService);
+  deleting = signal(false);
+  loading = computed(() => this.contactReasourse.isLoading() || this.deleting());
   //contacts = signal<Contact[]>([]);
 
   contactReasourse = resource({
     loader: () => this.apiService.getContacts(),
   });
+
+  async deleteContact(id: string) {
+    this.deleting.set(true);
+    await this.apiService.deleteContact(id);
+    this.deleting.set(false);
+    this.contactReasourse.reload();
+  }
 }
